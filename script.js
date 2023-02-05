@@ -116,3 +116,4 @@ const createUsernames = function (accs) {
       .join('');
   });
 };
+createUsernames(accounts);
