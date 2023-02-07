@@ -149,3 +149,29 @@ btnLogin.addEventListener('click', function (e) {
     calcDisplaySummary(currentAccount);
   }
 });
+
+btnTransfer.addEventListener('click', function (e) {
+  e.preventDefault();
+
+  const amount = Number(inputTransferAmount.value);
+  const transferTo = accounts.find(
+    (acc) => acc.username === inputTransferTo.value
+  );
+  inputTransferAmount.value = inputTransferTo.value = '';
+
+  if (
+    amount > 0 &&
+    transferTo &&
+    currentAccount.balance >= amount &&
+    transferTo?.username !== currentAccount.username
+  ) {
+    // Doing transfer
+    currentAccount.movements.push(-amount);
+    transferTo.movements.push(amount);
+
+    // Update UI
+    displayMovements(currentAccount.movements);
+    calcDisplayBalance(currentAccount.movements);
+    calcDisplaySummary(currentAccount);
+  }
+});
