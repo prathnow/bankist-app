@@ -141,7 +141,7 @@ btnLogin.addEventListener('click', function (e) {
     (acc) => acc.username === inputLoginUsername.value
   );
 
-  if (currentAccount?.pin === Number(inputLoginPin.value)) {
+  if (currentAccount?.pin === +inputLoginPin.value) {
     // Display UI and welcome message
     labelWelcome.textContent = `Welcome back, ${
       currentAccount.owner.split(' ')[0]
@@ -160,7 +160,7 @@ btnLogin.addEventListener('click', function (e) {
 btnTransfer.addEventListener('click', function (e) {
   e.preventDefault();
 
-  const amount = Number(inputTransferAmount.value);
+  const amount = +inputTransferAmount.value;
   const transferTo = accounts.find(
     (acc) => acc.username === inputTransferTo.value
   );
@@ -184,7 +184,7 @@ btnTransfer.addEventListener('click', function (e) {
 btnLoan.addEventListener('click', function (e) {
   e.preventDefault();
 
-  const amount = Number(inputLoanAmount.value);
+  const amount = +inputLoanAmount.value;
 
   if (
     amount > 0 &&
@@ -204,7 +204,7 @@ btnClose.addEventListener('click', function (e) {
 
   if (
     closeUsername === currentAccount.username &&
-    Number(closeUserPin) === currentAccount.pin
+    +closeUserPin === currentAccount.pin
   ) {
     const userIndex = accounts.findIndex(
       (acc) => acc.username === currentAccount.username
